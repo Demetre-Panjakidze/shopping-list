@@ -3,44 +3,44 @@ import 'package:flutter/material.dart';
 import 'package:shopping_list/models/category.dart';
 
 final categories = {
-  Categories.vegetables: Category(
+  Categories.vegetables: const Category(
     'Vegetables',
-    const Color.fromARGB(255, 0, 255, 128),
+    Color.fromARGB(255, 0, 255, 128),
   ),
-  Categories.fruit: Category(
+  Categories.fruit: const Category(
     'Fruit',
-    const Color.fromARGB(255, 145, 255, 0),
+    Color.fromARGB(255, 145, 255, 0),
   ),
-  Categories.meat: Category(
+  Categories.meat: const Category(
     'Meat',
-    const Color.fromARGB(255, 255, 102, 0),
+    Color.fromARGB(255, 255, 102, 0),
   ),
-  Categories.dairy: Category(
+  Categories.dairy: const Category(
     'Dairy',
-    const Color.fromARGB(255, 0, 208, 255),
+    Color.fromARGB(255, 0, 208, 255),
   ),
-  Categories.carbs: Category(
+  Categories.carbs: const Category(
     'Carbs',
-    const Color.fromARGB(255, 0, 60, 255),
+    Color.fromARGB(255, 0, 60, 255),
   ),
-  Categories.sweets: Category(
+  Categories.sweets: const Category(
     'Sweets',
-    const Color.fromARGB(255, 255, 149, 0),
+    Color.fromARGB(255, 255, 149, 0),
   ),
-  Categories.spices: Category(
+  Categories.spices: const Category(
     'Spices',
-    const Color.fromARGB(255, 255, 187, 0),
+    Color.fromARGB(255, 255, 187, 0),
   ),
-  Categories.convenience: Category(
+  Categories.convenience: const Category(
     'Convenience',
-    const Color.fromARGB(255, 191, 0, 255),
+    Color.fromARGB(255, 191, 0, 255),
   ),
-  Categories.hygiene: Category(
+  Categories.hygiene: const Category(
     'Hygiene',
-    const Color.fromARGB(255, 149, 0, 255),
+    Color.fromARGB(255, 149, 0, 255),
   ),
-  Categories.other: Category(
+  Categories.other: const Category(
     'Other',
-    const Color.fromARGB(255, 0, 225, 255),
+    Color.fromARGB(255, 0, 225, 255),
   ),
 };
