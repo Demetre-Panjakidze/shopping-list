@@ -14,7 +14,9 @@ class _GroceryListState extends State<GroceryList> {
 
   void _addItem() async {
     final newItem = await Navigator.of(context).push<GroceryItem>(
-      MaterialPageRoute(builder: (ctx) => const NewItem()),
+      MaterialPageRoute(
+        builder: (ctx) => const NewItem(),
+      ),
     );
 
     if (newItem == null) {
@@ -39,7 +41,9 @@ class _GroceryListState extends State<GroceryList> {
 
   @override
   Widget build(BuildContext context) {
-    Widget content = const Center(child: Text('No Items in cart'));
+    Widget content = const Center(
+      child: Text('No Items in cart'),
+    );
 
     if (_groceryItems.isNotEmpty) {
       content = ListView.builder(
@@ -47,7 +51,7 @@ class _GroceryListState extends State<GroceryList> {
         itemBuilder: (ctx, index) {
           return Dismissible(
             key: ValueKey(_groceryItems[index].id),
-            onDismissed: (direction) {
+            onDismissed: (_) {
               _removeItem(_groceryItems[index]);
             },
             child: ListTile(
