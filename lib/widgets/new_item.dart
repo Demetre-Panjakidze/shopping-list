@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shopping_list/data/categories.dart';
 import 'package:shopping_list/models/category.dart';
+import 'package:shopping_list/models/grocery_item.dart';
 
 class NewItem extends StatefulWidget {
   const NewItem({super.key});
@@ -19,10 +20,16 @@ class _NewItemState extends State<NewItem> {
   var _enteredName = '';
   var _enteredNumber = 1;
   var _selectedCategory = categories[Categories.vegetables]!;
+  var _isSending = false;
 
   void _saveItem() async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
+
+      setState(() {
+        _isSending = true;
+      });
+
       final url = Uri.https(
         'flutter-prep-342eb-default-rtdb.firebaseio.com',
         'shopping-list.json',
@@ -40,10 +47,21 @@ class _NewItemState extends State<NewItem> {
           },
         ),
       );
+
+      final Map<String, dynamic> resData = json.decode(response.body);
+
       if (!context.mounted) {
         return;
       }
-      Navigator.of(context).pop();
+
+      Navigator.of(context).pop(
+        GroceryItem(
+          id: resData['name'],
+          name: _enteredName,
+          category: _selectedCategory,
+          quantity: _enteredNumber,
+        ),
+      );
     }
   }
 
@@ -142,12 +160,18 @@ class _NewItemState extends State<NewItem> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   TextButton(
-                    onPressed: _resetItems,
+                    onPressed: _isSending ? null : _resetItems,
                     child: const Text('Reset'),
                   ),
                   ElevatedButton(
-                    onPressed: _saveItem,
-                    child: const Text('Submit'),
+                    onPressed: _isSending ? null : _saveItem,
+                    child: _isSending
+                        ? const SizedBox(
+                            width: 16,
+                            height: 16,
+                            child: CircularProgressIndicator(),
+                          )
+                        : const Text('Submit'),
                   ),
                 ],
               )
